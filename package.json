@@ -1,0 +1,33 @@
+{
+    "name": "dylanspurgin.com",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/dylanspurgin/dylanspurgin.com.git",
+    "author": "Dylan Spurgin <public@spurgin.net>",
+    "license": "MIT",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "webpack-dev-server",
+        "prod": "NODE_ENV=production webpack-dev-server --env.prod=true",
+        "build": "NODE_ENV=production webpack --env.prod=true",
+        "lint": "eslint ./client ./webpack.config.js -f table || true"
+    },
+    "dependencies": {
+        "jquery": "^3.1.1",
+        "node-sass": "^4.5.0",
+        "sass": "^0.5.0",
+        "webcomponents.js": "^0.7.24"
+    },
+    "devDependencies": {
+        "babel-core": "^6.23.1",
+        "babel-loader": "^6.3.2",
+        "css-loader": "^0.26.1",
+        "extract-text-webpack-plugin": "beta",
+        "image-webpack-loader": "^3.2.0",
+        "sass-loader": "^6.0.2",
+        "style-loader": "^0.13.1",
+        "webcomponents-loader": "^1.0.1",
+        "webpack": "^2.2.1",
+        "webpack-dev-server": "^2.4.1"
+    }
+}

@@ -1,0 +1,26 @@
+header {
+
+    display: flex;
+    flex-direction: row;
+
+    background-image: url('./img/tree-bench--header.jpg');
+    background-position: bottom;
+
+    padding: 30px;
+
+    .header-portrait {
+        background-image: url('./img/dylan-spurgin--headshot.jpg');
+        background-size: cover;
+        border-radius: 50%;
+        width: 250px;
+        height: 250px;
+    }
+
+    .header-title {
+        color: $color1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 20px;
+    }
+}
