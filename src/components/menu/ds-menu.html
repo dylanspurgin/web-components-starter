@@ -1,9 +1,29 @@
 <template>
     <style>
         :host {
+            box-sizing: border-box;
+        }
+        ul {
             width: 100%;
             display: flex;
             flex-direction: row;
+            list-style: none none;
+            justify-content: flex-end;
+            box-sizing: border-box;
+        }
+
+        li {
+            box-sizing: border-box;
+            margin-right: 32px;
+            text-transform: uppercase;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        a:hover, a.active {
+            border-bottom: 2px solid;
         }
 
     </style>
@@ -33,5 +53,5 @@
         }
 
     }
-    document.registerElement('ds-header', DsHeader);
+    document.registerElement('ds-menu', DsMenu);
 </script>

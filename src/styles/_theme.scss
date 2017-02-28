@@ -1,11 +1,11 @@
 body {
     background-color: $color1;
     color: $color2;
-    font-family: 'Lora', serif;
+    font-family: $font-family-serif;
 }
 
 h1, h2, h3, h4, h5 {
-    font-family: 'Roboto', sans-serif;
+    font-family: $font-family-sans-serif;
 }
 
 h1 {

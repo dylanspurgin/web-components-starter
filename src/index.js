@@ -1,10 +1,12 @@
 require('./index.scss');
 
 import './components/header/ds-header.html';
+import './components/menu/ds-menu.html';
+import './components/about/ds-about.html';
+import './components/work/ds-work.html';
+import './components/contact/ds-contact.html';
 
 (function() {
-
-    console.debug('index.js');
 
     // Add webcomponents polyfill if needed
     if ('registerElement' in document &&
