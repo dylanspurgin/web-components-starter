@@ -7,7 +7,7 @@
     "license": "MIT",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "webpack-dev-server",
+        "start": "webpack-dev-server --hot --progress --colors",
         "prod": "NODE_ENV=production webpack-dev-server --env.prod=true",
         "build": "NODE_ENV=production webpack --env.prod=true",
         "lint": "eslint ./client ./webpack.config.js -f table || true"
@@ -21,13 +21,16 @@
     "devDependencies": {
         "babel-core": "^6.23.1",
         "babel-loader": "^6.3.2",
+        "babel-preset-es2015": "^6.18.0",
         "css-loader": "^0.26.1",
-        "extract-text-webpack-plugin": "beta",
+        "extract-text-webpack-plugin": "1.0.1 ",
+        "file-loader": "^0.9.0",
+        "html-loader": "^0.4.4",
         "image-webpack-loader": "^3.2.0",
         "sass-loader": "^6.0.2",
         "style-loader": "^0.13.1",
         "webcomponents-loader": "^1.0.1",
-        "webpack": "^2.2.1",
-        "webpack-dev-server": "^2.4.1"
+        "webpack": "^1.14.0",
+        "webpack-dev-server": "^1.16.3"
     }
 }
