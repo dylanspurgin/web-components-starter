@@ -1,10 +1,58 @@
 <template>
-blah
+    <style>
+        :host {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+
+            background-image: url('./img/tree-bench--header.jpg');
+            background-position: bottom;
+
+            padding: 30px;
+        }
+
+        .header-portrait {
+            background-image: url('./img/dylan-spurgin--headshot.jpg');
+            background-size: cover;
+            border-radius: 50%;
+            width: 250px;
+            height: 250px;
+        }
+
+        .header-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 20px;
+        }
+
+        .header-name {
+            margin: 0 0 8px 0;
+            padding: 0;
+        }
+
+        .header-title {
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
+
+    <div class="header-portrait"></div>
+    <span class="header-text">
+        <h1 class="header-name">Dylan Spurgin</h1>
+        <h3 class="header-title">Front-end Engineer</h3>
+    </span>
+
 </template>
 
 <script>
     class DsHeader extends HTMLElement {
 
+        constructor () {
+            super();
+            console.debug('DsHeader constructor');
+        }
 
         createdCallback() {
             var root = this.createShadowRoot();

@@ -1,4 +1,4 @@
-import './index.scss';
+require('./index.scss');
 
 import './components/header/ds-header.html';
 
