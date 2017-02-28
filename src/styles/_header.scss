@@ -1,4 +1,4 @@
-ds-header::shadow .header-text {
-    font-family: 'Roboto', sans-serif;
+ds-header {
+    font-family: $font-family-sans-serif;
     color: $color1;
 }

@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-
 const sourcePath = path.join(__dirname, './src');
 const buildPath = path.join(__dirname, './build');
 
@@ -50,7 +49,6 @@ module.exports = {
     //     );
     // }
 
-    // return {
     // devtool: isProd ? 'source-map' : 'eval',
     context: sourcePath,
     entry: {
@@ -132,5 +130,4 @@ module.exports = {
         inline: true
     }
 
-    // };
 };
