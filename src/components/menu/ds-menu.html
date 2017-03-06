@@ -3,6 +3,7 @@
         :host {
             box-sizing: border-box;
         }
+
         ul {
             width: 100%;
             display: flex;
@@ -17,6 +18,9 @@
             margin-right: 32px;
             text-transform: uppercase;
         }
+        li:last-of-type {
+            margin-right: 0;
+        }
 
         a {
             text-decoration: none;
@@ -29,8 +33,8 @@
     </style>
 
     <nav>
-        <ul>
-            <li><a href="#about">About</a></li>
+        <ul id="menu">
+            <li><a onclick="" href="#about">About</a></li>
             <li><a href="#work">Work</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -42,14 +46,51 @@
 
         constructor () {
             super();
-            console.debug('DsMenu constructor');
+            console.debug('constructor');
+            this.menuItems = [
+                {
+                    text: 'About',
+                    anchor: '#about'
+                },
+                {
+                    text: 'Work',
+                    anchor: '#work'
+                },
+                {
+                    text: 'Contact',
+                    anchor: '#contact'
+                }
+            ];
+            console.debug('constructor');
         }
 
         createdCallback() {
+            console.debug('createdCallback');
             var root = this.createShadowRoot();
             var template = currentWebcomponent.querySelector('template');
             var clone = document.importNode(template.content, true);
             root.appendChild(clone);
+
+            this._createMenuItems(clone);
+        }
+
+        _createMenuItems (parent) {
+            console.debug('menu items', this.menuItems);
+            // this.menuItems.forEach((item) => {
+            //     var li = document.createElement('li');
+            //     var a = document.createElement('a');
+            //     a.innerHTML(item.text);
+            //     a.setAttribute('href', item.anchor);
+            //     a.onclick = function () {
+            //         smoothScroll.animateScroll(
+            //             item.anchor, // Node to scroll to. ex. document.querySelector( '#bazinga' )
+            //             null, // Node that toggles the animation, OR an integer. ex. document.querySelector( '#toggle' )
+            //             null // Classes and callbacks. Same options as those passed into the init() function.
+            //         );
+            //     }
+            //     li.appendChild(a);
+            //     parent.appendChild(li);
+            // })
         }
 
     }

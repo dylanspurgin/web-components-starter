@@ -4,11 +4,61 @@
             box-sizing: border-box;
             color: inherit;
         }
+
+        .ds-about--content {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .ds-about--image {
+            width: 428px;
+            height: 321px;
+            background-image: url(/img/family.jpg);
+            background-size: contain;
+            margin: auto 32px 32px auto;
+        }
+
+        .ds-about--left {
+
+        }
+
+        .ds-about--right {
+
+        }
     </style>
 
-    <p>
-        my component
-    </p>
+    <h2>About</h2>
+    <div class="ds-about--content">
+        <div class="ds-about--left">
+            <div class="ds-about--image"></div>
+        </div>
+        <div class="ds-about--right">
+            <h3>
+                My name is Dylan
+            </h3>
+            <h4>
+                I am a front-end engineer who loves to build
+                engaging user experiences.
+            </h4>
+            <p>
+                I have extensive experience building AngularJS applications,
+                Ionic hybrid mobile apps, and WordPress sites and custom themes.
+            </p>
+            <p>
+                I live with my wife Lesie and our daughter Annalouise in
+                our 1982 Midas Frolic,
+                <a target="_blank" href="http://followthepurplepony.com">The Purple Pony</a>.
+            </p>
+            <p>
+                I am <strong>currently seeking</strong> opportunities to:
+                <ul>
+                    <li>Rapid prototype web and mobile app concepts</li>
+                    <li>Deliver high-quality, well-tested AngularJS components</li>
+                    <li>Work with skilled designers to create unique web experiences</li>
+                </ul>
+            </p>
+        </div>
+    </div>
 </template>
 
 <script>

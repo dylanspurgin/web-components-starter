@@ -4,4 +4,7 @@ $color1: rgba(218, 210, 216, 1); // Light gray
 $color2: rgba(20, 54, 66, 1);    // Dark blue
 $color3: rgba(15, 139, 141, 1);  // Cyan
 $color4: rgba(236, 154, 41, 1);  // Orange
+
+
 $color5: rgba(168, 32, 26, 1);   // Red
+$color5-light: lighten($color5, 20%)
