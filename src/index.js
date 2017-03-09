@@ -1,6 +1,6 @@
 require('./index.scss');
 
-import smoothScroll from 'smooth-scroll';
+// import smoothScroll from 'smooth-scroll';
 
 import './components/header/ds-header.html';
 import './components/menu/ds-menu.html';
@@ -28,5 +28,6 @@ function polyfill () {
 }
 
 function initScroll () {
+    console.debug('smoothScroll', smoothScroll)
     smoothScroll.init();
 }

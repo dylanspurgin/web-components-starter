@@ -32,21 +32,13 @@
 
     </style>
 
-    <nav>
-        <ul id="menu">
-            <li><a onclick="" href="#about">About</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
 </template>
 
 <script>
+    // import smoothScroll from 'smooth-scroll';
     class DsMenu extends HTMLElement {
 
-        constructor () {
-            super();
-            console.debug('constructor');
+        createdCallback() {
             this.menuItems = [
                 {
                     text: 'About',
@@ -61,36 +53,36 @@
                     anchor: '#contact'
                 }
             ];
-            console.debug('constructor');
-        }
 
-        createdCallback() {
-            console.debug('createdCallback');
-            var root = this.createShadowRoot();
+            var shadowRoot = this.createShadowRoot();
             var template = currentWebcomponent.querySelector('template');
             var clone = document.importNode(template.content, true);
-            root.appendChild(clone);
 
-            this._createMenuItems(clone);
+            shadowRoot.appendChild(clone);
+            this._createMenu(shadowRoot);
         }
 
-        _createMenuItems (parent) {
-            console.debug('menu items', this.menuItems);
-            // this.menuItems.forEach((item) => {
-            //     var li = document.createElement('li');
-            //     var a = document.createElement('a');
-            //     a.innerHTML(item.text);
-            //     a.setAttribute('href', item.anchor);
-            //     a.onclick = function () {
-            //         smoothScroll.animateScroll(
-            //             item.anchor, // Node to scroll to. ex. document.querySelector( '#bazinga' )
-            //             null, // Node that toggles the animation, OR an integer. ex. document.querySelector( '#toggle' )
-            //             null // Classes and callbacks. Same options as those passed into the init() function.
-            //         );
-            //     }
-            //     li.appendChild(a);
-            //     parent.appendChild(li);
-            // })
+        _createMenu (parent) {
+            let ul = document.createElement('ul');
+            this.menuItems.forEach((item) => {
+                let li = document.createElement('li');
+                let a = document.createElement('a');
+                let menuText = document.createTextNode(item.text);
+                a.appendChild(menuText);
+                a.setAttribute('href', item.anchor);
+                a.onclick = function () {
+                    smoothScroll.animateScroll(
+                        item.anchor, // Node to scroll to. ex. document.querySelector( '#bazinga' )
+                        null, // Node that toggles the animation, OR an integer. ex. document.querySelector( '#toggle' )
+                        null // Classes and callbacks. Same options as those passed into the init() function.
+                    );
+                }
+                li.appendChild(a);
+                ul.appendChild(li);
+            });
+            let nav = document.createElement('nav');
+            nav.appendChild(ul);
+            parent.appendChild(nav);
         }
 
     }
