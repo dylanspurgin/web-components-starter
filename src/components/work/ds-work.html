@@ -1,4 +1,4 @@
-<template>
+<template id="ds-work-template">
     <style>
         :host {
             box-sizing: border-box;
@@ -7,7 +7,7 @@
     </style>
 
     <p>
-        my component
+        ds-work
     </p>
 </template>
 
@@ -17,15 +17,18 @@
         constructor () {
             super();
             console.debug('DsWork constructor');
+
+            // Attach shadow dom
+            let shadowRoot = this.attachShadow({mode: 'open'});
+            // TODO - document.currentScript.ownerDocument is not available with webcomponents-loader.
+            //        currentWebcomponent is the workaround provided by the loader
+            const template = currentWebcomponent.querySelector('#ds-work-template');
+            // const template = document.currentScript.ownerDocument.querySelector('#ds-header-template');
+            const instance = template.content.cloneNode(true);
+            shadowRoot.appendChild(instance);
         }
 
-        createdCallback() {
-            var root = this.createShadowRoot();
-            var template = currentWebcomponent.querySelector('template');
-            var clone = document.importNode(template.content, true);
-            root.appendChild(clone);
-        }
 
     }
-    document.registerElement('ds-work', DsWork);
+    customElements.define('ds-work', DsWork);
 </script>
