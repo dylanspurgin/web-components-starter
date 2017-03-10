@@ -28,5 +28,6 @@ function polyfill () {
 }
 
 function initScroll () {
+    console.debug('smoothScroll', smoothScroll)
     smoothScroll.init();
 }
