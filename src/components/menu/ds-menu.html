@@ -1,4 +1,4 @@
-<template>
+<template id="ds-menu-template">
     <style>
         :host {
             box-sizing: border-box;
@@ -46,7 +46,6 @@
 
         constructor () {
             super();
-            console.debug('constructor');
             this.menuItems = [
                 {
                     text: 'About',
@@ -61,16 +60,18 @@
                     anchor: '#contact'
                 }
             ];
-            console.debug('constructor');
+
+            // Attach shadow dom
+            let shadowRoot = this.attachShadow({mode: 'open'});
+            // TODO - document.currentScript.ownerDocument is not available with webcomponents-loader.
+            //        currentWebcomponent is the workaround provided by the loader
+            const template = currentWebcomponent.querySelector('#ds-menu-template');
+            // const template = document.currentScript.ownerDocument.querySelector('#ds-header-template');
+            const instance = template.content.cloneNode(true);
+            shadowRoot.appendChild(instance);
         }
 
         createdCallback() {
-            console.debug('createdCallback');
-            var root = this.createShadowRoot();
-            var template = currentWebcomponent.querySelector('template');
-            var clone = document.importNode(template.content, true);
-            root.appendChild(clone);
-
             this._createMenuItems(clone);
         }
 
@@ -94,5 +95,5 @@
         }
 
     }
-    document.registerElement('ds-menu', DsMenu);
+    customElements.define('ds-menu', DsMenu);
 </script>

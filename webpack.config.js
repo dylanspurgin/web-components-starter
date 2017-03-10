@@ -5,51 +5,52 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const sourcePath = path.join(__dirname, './src');
 const buildPath = path.join(__dirname, './build');
 
+// const nodeEnv = env && env.prod ? 'production' : 'development';
+const nodeEnv = 'production';
+const isProd = nodeEnv === 'production';
+
+
+// let plugins = [
+//     // new webpack.optimize.CommonsChunkPlugin({
+//     //     name: 'vendor',
+//     //     minChunks: Infinity,
+//     //     filename: 'vendor.bundle.js'
+//     // }),
+//     // new webpack.EnvironmentPlugin({
+//     //     NODE_ENV: nodeEnv,
+//     // }),
+//     // new webpack.NamedModulesPlugin()
+//     new ExtractTextPlugin("[name].css")
+// ];
+//
+// if (isProd) {
+//     plugins.push(
+//         new webpack.LoaderOptionsPlugin({
+//             minimize: true,
+//             debug: false
+//         }),
+//         new webpack.optimize.UglifyJsPlugin({
+//             compress: {
+//                 warnings: false,
+//                 screw_ie8: true,
+//                 conditionals: true,
+//                 unused: true,
+//                 comparisons: true,
+//                 sequences: true,
+//                 dead_code: true,
+//                 evaluate: true,
+//                 if_return: true,
+//                 join_vars: true,
+//             },
+//             output: {
+//                 comments: false,
+//             },
+//         })
+//     );
+// }
 
 module.exports = {
-    // const nodeEnv = env && env.prod ? 'production' : 'development';
-    // const isProd = nodeEnv === 'production';
-
-    // let plugins = [
-    //     // new webpack.optimize.CommonsChunkPlugin({
-    //     //     name: 'vendor',
-    //     //     minChunks: Infinity,
-    //     //     filename: 'vendor.bundle.js'
-    //     // }),
-    //     // new webpack.EnvironmentPlugin({
-    //     //     NODE_ENV: nodeEnv,
-    //     // }),
-    //     // new webpack.NamedModulesPlugin()
-    //     new ExtractTextPlugin("[name].css")
-    // ];
-    //
-    // if (isProd) {
-    //     plugins.push(
-    //         new webpack.LoaderOptionsPlugin({
-    //             minimize: true,
-    //             debug: false
-    //         }),
-    //         new webpack.optimize.UglifyJsPlugin({
-    //             compress: {
-    //                 warnings: false,
-    //                 screw_ie8: true,
-    //                 conditionals: true,
-    //                 unused: true,
-    //                 comparisons: true,
-    //                 sequences: true,
-    //                 dead_code: true,
-    //                 evaluate: true,
-    //                 if_return: true,
-    //                 join_vars: true,
-    //             },
-    //             output: {
-    //                 comments: false,
-    //             },
-    //         })
-    //     );
-    // }
-
-    // devtool: isProd ? 'source-map' : 'eval',
+    devtool: isProd ? 'source-map' : 'eval',
     context: sourcePath,
     entry: {
         index: './index.js',
@@ -61,17 +62,21 @@ module.exports = {
     },
     module: {
         loaders: [
-            // html loader
+            // html webcomponent loader
             {
                 test: /\.html$/,
                 loader: 'webcomponents-loader',
                 query: {
                     babel: {
-                        presets: 'es2015',
+                        presets: 'latest',
+                        plugins: [
+                            "transform-custom-element-classes",
+                            "transform-es2015-classes"
+                        ],
                         compact: true
                     },
                     sass: {
-                        presets: 'es2015',
+                        presets: 'latest',
                         compact: true
                     },
                     minify: {
@@ -89,7 +94,7 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['es2015']
+                    presets: ['latest']
                 }
             }, {
                 test: /\.scss$/,
@@ -111,17 +116,17 @@ module.exports = {
             sourcePath
         ]
     },
-    // performance: isProd && {
-    //     maxAssetSize: 100,
-    //     maxEntrypointSize: 300,
-    //     hints: 'warning',
-    // },
-    //
-    // stats: {
-    //     colors: {
-    //         green: '\u001b[32m',
-    //     }
-    // },
+    performance: isProd && {
+        maxAssetSize: 100,
+        maxEntrypointSize: 300,
+        hints: 'warning',
+    },
+
+    stats: {
+        colors: {
+            green: '\u001b[32m',
+        }
+    },
 
     devServer: {
         contentBase: sourcePath,

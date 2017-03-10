@@ -1,4 +1,4 @@
-<template>
+<template id="ds-contact-template">
     <style>
         :host {
             box-sizing: border-box;
@@ -7,7 +7,7 @@
     </style>
 
     <p>
-        my component
+        ds-contact
     </p>
 </template>
 
@@ -17,15 +17,17 @@
         constructor () {
             super();
             console.debug('DsContact constructor');
-        }
 
-        createdCallback() {
-            var root = this.createShadowRoot();
-            var template = currentWebcomponent.querySelector('template');
-            var clone = document.importNode(template.content, true);
-            root.appendChild(clone);
+            // Attach shadow dom
+            let shadowRoot = this.attachShadow({mode: 'open'});
+            // TODO - document.currentScript.ownerDocument is not available with webcomponents-loader.
+            //        currentWebcomponent is the workaround provided by the loader
+            const template = currentWebcomponent.querySelector('#ds-contact-template');
+            // const template = document.currentScript.ownerDocument.querySelector('#ds-header-template');
+            const instance = template.content.cloneNode(true);
+            shadowRoot.appendChild(instance);
         }
 
     }
-    document.registerElement('ds-contact', DsContact);
+    customElements.define('ds-contact', DsContact);
 </script>
