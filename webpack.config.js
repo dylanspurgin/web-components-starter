@@ -54,7 +54,7 @@ module.exports = {
     context: sourcePath,
     entry: {
         index: './index.js',
-        webcomponents: 'webcomponents.js'
+        webcomponents: ['webcomponents.js']
     },
     output: {
         path: buildPath,
@@ -65,36 +65,62 @@ module.exports = {
             // html webcomponent loader
             {
                 test: /\.html$/,
-                loader: 'webcomponents-loader',
-                query: {
-                    babel: {
-                        presets: 'latest',
-                        plugins: [
-                            "transform-custom-element-classes",
-                            "transform-es2015-classes"
-                        ],
-                        compact: true
-                    },
-                    sass: {
-                        presets: 'latest',
-                        compact: true
-                    },
-                    minify: {
-                        removeAttributeQuotes: true,
-                        minifyCSS: true,
-                        minifyJS: true,
-                        removeComments: true,
-                        collapseWhitespace: true
-                    }
-                }
+                loaders: [
+                    'webcomponents-loader?' + JSON.stringify({
+                            babel: {
+                                presets: [
+                                    ['es2015', {modules: false, loose: true}]
+                                ],
+                                plugins: [
+                                    'transform-custom-element-classes'
+                                ],
+                                compact: true
+                            },
+                            sass: {
+                                presets: 'es2015',
+                                compact: true
+                            },
+                            minify: {
+                                removeAttributeQuotes: true,
+                                minifyCSS: true,
+                                minifyJS: true,
+                                removeComments: true,
+                                collapseWhitespace: true
+                            }
+                        }),
+                ]
             },
+            // {
+            //     test: /\.html$/,
+            //     loader: 'webcomponents-loader',
+            //     query: {
+            //         babel: {
+            //             presets: 'latest',
+            //             plugins: [
+            //                 "transform-custom-element-classes"
+            //             ],
+            //             compact: true
+            //         },
+            //         sass: {
+            //             presets: 'es2015',
+            //             compact: true
+            //         },
+            //         minify: {
+            //             removeAttributeQuotes: true,
+            //             minifyCSS: true,
+            //             minifyJS: true,
+            //             removeComments: true,
+            //             collapseWhitespace: true
+            //         }
+            //     }
+            // },
             // es6 babel loader
             {
                 test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
+                exclude: /(node_modules)/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['latest']
+                    presets: ['es2015']
                 }
             }, {
                 test: /\.scss$/,

@@ -34,8 +34,8 @@
 
 </template>
 
-<script>
-    // import smoothScroll from 'smooth-scroll';
+<script type="text/javascript">
+    'use strict'
     class DsMenu extends HTMLElement {
 
         constructor () {
@@ -75,9 +75,10 @@
                 let menuText = document.createTextNode(item.text);
                 a.appendChild(menuText);
                 a.setAttribute('href', item.anchor);
-                a.onclick = function () {
-                    smoothScroll.animateScroll(
-                        item.anchor, // Node to scroll to. ex. document.querySelector( '#bazinga' )
+                a.onclick = function (e) {
+                    e.preventDefault();
+                    window.smoothScroll.animateScroll(
+                        document.querySelector(item.anchor),
                         null, // Node that toggles the animation, OR an integer. ex. document.querySelector( '#toggle' )
                         null // Classes and callbacks. Same options as those passed into the init() function.
                     );
